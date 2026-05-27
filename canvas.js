@@ -21,19 +21,20 @@ var mouseY = 0;
 var x = 250, y = 150;
 
 var gameMap = [
-    { x: 0, y: 600, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true },
-    { x: 0, y: 0, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true },
-    { x: 800, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true },
-    { x: 0, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true },
+    { id: "bordaDireita", x: 0, y: 600, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "bordaEsquerda", x: 0, y: 0, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "bordaInferior", x: 800, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "bordaSuperior", x: 0, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
 
-    { x: 100, y: 400, width: 200, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true },
-    { x: 400, y: 300, width: 200, height: 5, cor: "#00b81f", colPlayer: true, colMouse: true },
-    { x: 300, y: 200, width: 100, height: 5, cor: "#00B806", colPlayer: true, colMouse: true },
-    { x: 350, y: 100, width: 100, height: 5, cor: "#b86800", colPlayer: true, colMouse: false },
-    { x: 350, y: 350, width: 20, height: 200, cor: "#b80099", colPlayer: false, colMouse: true },
+    { id: "caminho1", x: 100, y: 400, width: 200, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "caminho2", x: 400, y: 300, width: 200, height: 5, cor: "#00b81f", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "caminho3", x: 300, y: 200, width: 100, height: 5, cor: "#00B806", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    
+    { id: "mouseTravessa1", x: 350, y: 100, width: 100, height: 5, cor: "#b86800", colPlayer: true, colMouse: false, apertavel: false, targetId: null },
+    { id: "cuboTravessa1", x: 350, y: 350, width: 20, height: 200, cor: "#b80099", colPlayer: false, colMouse: true, apertavel: false, targetId: null },
 
-    { x: 350, y: 350, width: 20, height: 20, cor: "#000000", colPlayer: true, colMouse: true },
-    { x: 350, y: 530, width: 20, height: 20, cor: "#000000", colPlayer: true, colMouse: true }
+    { id: "bordaTravessa1", x: 350, y: 350, width: 20, height: 20, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null },
+    { id: "bordaTravessa2", x: 350, y: 530, width: 20, height: 20, cor: "#000000", colPlayer: true, colMouse: true, apertavel: false, targetId: null }
 ];
 
 canvas.addEventListener("mousemove", function (event) {
@@ -87,7 +88,11 @@ function mouseBolinha() {
     let nextY = y + (mouseY - y) * 0.1;
 
     for (let bloco of gameMap) {
-        if (!bloco.colMouse) continue;
+        if (!bloco.colMouse && !bloco.apertavel) continue;
+
+        if(bloco.apertavel){
+            gameMap = gameMap.filter(b => b.id !== bloco.targetId);
+        }
 
         if (colisaoAABB(
             nextX - raio, y - raio, raio * 2, raio * 2,
@@ -105,7 +110,12 @@ function mouseBolinha() {
     x = nextX;
 
     for (let bloco of gameMap) {
-        if (!bloco.colMouse) continue;
+        if (!bloco.colMouse && !bloco.apertavel) continue;
+
+        if(bloco.apertavel){
+            gameMap = gameMap.filter(b => b.id !== bloco.targetId);
+        }
+    
 
         if (colisaoAABB(
             x - raio, nextY - raio, raio * 2, raio * 2,
