@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas');
 canvas.width = 1920;
-canvas.height = 601;
+canvas.height = 1080;
 
 var c = canvas.getContext('2d');
 
