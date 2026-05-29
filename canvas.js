@@ -49,6 +49,7 @@ var gameMaps = [
 
         { id: "botaoIrado", x: 150, y: 200, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: true },
         { id: "botaoIradoPlayer", x: 260, y: 200, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false },
+        { id: "testWinSquare", x: 760, y: 0, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true },
     ],
     mapaTeste1 = [
         { id: "bordaDireita", x: 0, y: 800, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
@@ -58,6 +59,9 @@ var gameMaps = [
 
         { id: "botaoIrado", x: 180, y: 100, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: true, botRepeatable: true },
         { id: "botaoIradoQueAbreAPorta", x: 380, y: 200, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: false }
+    ],
+    winScreen = [
+
     ],
 ];
 // eu sem querer pensei nsiso e é um jeito legal de fazer vários mapas funcionar ! eba !
@@ -103,12 +107,20 @@ activeGameMap = gameMaps[0];
 var currentMap = 0;
 // surgiu do nada massurgiu legal !
 
+function endGame(){
+    // faz aparecer algum texto na tela via html talvez? deixo nas maos de vc meu caro fred
+}
+
 function logicaBase() {
     requestAnimationFrame(logicaBase);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    desenharMapa();
-    movimentoBase();
-    mouseBolinha();
+    if (activeGameMap != gameMaps[2]) { // trocar o valor pro "mapa de vitória" real, que basicamente só limpa o canvas
+        desenharMapa();
+        movimentoBase();
+        mouseBolinha();
+    }else{
+        endGame();
+    }
 }
 
 function desenharMapa() {
