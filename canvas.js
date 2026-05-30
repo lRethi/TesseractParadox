@@ -92,7 +92,7 @@ var gameMaps = [
             { exclusionId: null, x: 20, y: 20, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: null, botPressurePlate: false },
             { exclusionId: null, x: 733, y: 560 + 30, width: 40, height: 10, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
             { exclusionId: null, x: 760, y: 1, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false },
-            
+
             { exclusionId: null, x: 100, y: 50, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: true },
             { exclusionId: null, x: 100, y: 150, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: true },
         ]
@@ -366,17 +366,31 @@ function mouseBolinha() {
         }
     }
 
-    c.beginPath();
-    c.arc(x, y, raio, 0, Math.PI * 2);
-    c.fillStyle = "#ff9100";
-    c.fill();
-    // outline pra ficar BONITO !
+    if (mouseClick) { // pra quando ta clicando pra ter feedback visual
+        c.beginPath();
+        c.arc(x, y, raio, 0, Math.PI * 2);
+        c.fillStyle = "#ff5e00";
+        c.fill();
+        // outline pra ficar BONITO !
 
-    c.beginPath();
-    c.arc(x, y, raio - 2, 0, Math.PI * 2);
-    c.fillStyle = "#00c3ff";
-    c.fill();
-    // desenha a bolota () <- bola !
+        c.beginPath();
+        c.arc(x, y, raio - 2, 0, Math.PI * 2);
+        c.fillStyle = "#00ff9d";
+        c.fill();
+        // desenha a bolota () <- bola !
+    } else { // ela normalzinha
+        c.beginPath();
+        c.arc(x, y, raio, 0, Math.PI * 2);
+        c.fillStyle = "#ff9100";
+        c.fill();
+        // outline pra ficar BONITO !
+
+        c.beginPath();
+        c.arc(x, y, raio - 2, 0, Math.PI * 2);
+        c.fillStyle = "#00c3ff";
+        c.fill();
+        // desenha a bolota () <- bola !
+    }
 }
 
 function movimentoBase() {
@@ -452,25 +466,52 @@ function movimentoBase() {
 function desenharPlayer() {
     c.fillStyle = "#b80099";
     c.fillRect(posXQuadrado1, posYQuadrado1, tam, tam);
-    // outline pra ficar bonito MAS DOIS
+    // outline pra ele fica ninito
 
     c.fillStyle = "#f4f800";
     c.fillRect(posXQuadrado1 + 1, posYQuadrado1 + 1, tam - 2, tam - 2);
-    // pinta o quadrado de amarelio
+    // pinta ele de amarelio
+
+    let eyePosA, eyePosB, mouthCornerPosA, mouthCornerPosB, mouthLinePos;
+    // iedia do fred do rosto mexer pro lado
+
+    if (teclas["ArrowLeft"] || teclas["a"]) {
+        eyePosA = 7;
+        eyePosB = 30;
+        mouthCornerPosA = 7;
+        mouthCornerPosB = 37;
+        mouthLinePos = 2;
+    }
+    else if (teclas["ArrowRight"] || teclas["d"]) {
+        eyePosA = 15;
+        eyePosB = 40;
+        mouthCornerPosA = 13;
+        mouthCornerPosB = 43;
+        mouthLinePos = 8;
+    }
+    else {
+        eyePosA = 10;
+        eyePosB = 35;
+        mouthCornerPosA = 10;
+        mouthCornerPosB = 40;
+        mouthLinePos = 5;
+    }
+
     for (var i = 1; i <= 2; i++) {
         c.fillStyle = "#000000";
         switch (i) {
             case 1:
-                c.fillRect(posXQuadrado1 + 10, posYQuadrado1 + 15, 5, 5);
+                c.fillRect(posXQuadrado1 + eyePosA, posYQuadrado1 + 15, 5, 5);
                 break;
             case 2:
-                c.fillRect(posXQuadrado1 + 35, posYQuadrado1 + 15, 5, 5);
+                c.fillRect(posXQuadrado1 + eyePosB, posYQuadrado1 + 15, 5, 5);
                 break;
         }
     }
-    // dê olhos ao filho para que ele seja capaz de enxergar
-    c.fillRect(posXQuadrado1 + 10, posYQuadrado1 + 35, 30, 5);
-    c.fillRect(posXQuadrado1 + 5, posYQuadrado1 + 30, 5, 5);
-    c.fillRect(posXQuadrado1 + 40, posYQuadrado1 + 30, 5, 5);
-    // pra ele ter um sorrisinho :)
+    // let my son see
+
+    c.fillRect(posXQuadrado1 + mouthCornerPosA, posYQuadrado1 + 35, 30, 5);
+    c.fillRect(posXQuadrado1 + mouthLinePos, posYQuadrado1 + 30, 5, 5);
+    c.fillRect(posXQuadrado1 + mouthCornerPosB, posYQuadrado1 + 30, 5, 5);
+    // and let him smile :)
 }
