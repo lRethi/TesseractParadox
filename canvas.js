@@ -85,7 +85,7 @@ var gameMaps = [
         nome: "The end of the rainbow.",
         descricao: ``,
         dados: [
-            { id: "background", x: 0, y: 0, width: 800, height: 600, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false }
+            { id: "background", x: 0, y: 0, width: 1920, height: 1080, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false }
         ]
     }
 ];
