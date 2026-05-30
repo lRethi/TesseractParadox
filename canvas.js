@@ -5,12 +5,15 @@ Talk box:
 Fred: Maybe a cool idea for the cube to collide with the ball!
 Also Pressure plates and the win conditon needs both players to be on the square OR 2 win squares one for each player
 ALSO SORRY FOR THE MATH AND THE STUPID CHUD NUMBERS
-AAAAAAAALSOOO i had an idea about the buttons to make them modular also, by taking the id of the wall we want to delete in an atribute maybe called "linkedWall: bordaTravessa1" and it deletes the wall listed below as an example, but idk how to do that
-{ id: "bordaTravessa1", x: 395, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
+AAAAAAAALSOOO i had an idea about the buttons to make them modular also, by taking the exclusionId of the wall we want to delete in an atribute maybe called "linkedWall: bordaTravessa1" and it deletes the wall listed below as an example, but idk how to do that
+{ exclusionId: "bordaTravessa1", x: 395, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
 anyway just to make my job easier so i can just make buttons easily work..
 add the atribute to all objects, imagine the player clicks a button and the map wall just dissapears >:]
 
 Liv:
+exclusionId é o id que vai ser usado pra ser afetado pelo targetId, se mais de um bloco tiver o mesmo exclusionId, o targetId do botão vai afetar todos
+botAcao tem que ser "ativa", "desativa" ou "toggle", pq sao as acoes uqe o botao pode fazer com coisa
+pra fazer botao q é pressure plate do mainecraft é só ativar botPressurePlate na flag que ele automaticamente entra lá assim que detecta colisoes
 
 */
 var canvas = document.querySelector('canvas');
@@ -38,7 +41,7 @@ var x = 250, y = 150; // pos inicial do mouse
 // variaveis muito legais acima ! haha !
 
 // jeito muito estupido de desenhar o mapa e as colisoes™
-// id: fodase mas usa pra caçar coisa pra apagar, x, y, w e h sao obvios, cor é a cor do bagulhete no mapa, colPlayer é se colidecom o quadrado, colMouse é se colide com o mouse
+// exclusionId: fodase mas usa pra caçar coisa pra apagar, x, y, w e h sao obvios, cor é a cor do bagulhete no mapa, colPlayer é se colidecom o quadrado, colMouse é se colide com o mouse
 // clickableMouse é pra ver se é clicavel pelo mouse ou nao, targetId, botApertado, objAtivo e playerClickable mesma merda tudo so serve pra verificar coisa de botao
 // eu amo flags! >:D
 
@@ -57,38 +60,41 @@ var gameMaps = [
         <p>O seu objetivo é ver o quão longe você chega em sua própria câmara de <b><i>tormento eterno</i></b>, boa sorte! :D</p>
         `,
         dados: [
-            { id: "background", x: 0, y: 0, width: 800, height: 600, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
+            { exclusionId: null, x: 0, y: 0, width: 800, height: 600, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 0, y: 600, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 0, y: 0, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 800, y: 0, width: 2, height: 600, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 0, y: 0, width: 2, height: 600, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 1, y: 101, width: 399, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 1, y: 201, width: 503, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 504, y: 101, width: 296, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 699, y: 496, width: 101, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 499, y: 1, width: 5, height: 105, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 499, y: 201, width: 5, height: 399, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 599, y: 101, width: 5, height: 400, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 699, y: 201, width: 5, height: 300, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 1, y: 1, width: 1, height: 1, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 499, y: 106, width: 5, height: 95, cor: "#ff9100", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 400, y: 101, width: 99, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 699, y: 501, width: 5, height: 99, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 395, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 499, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 499, y: 201, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 699, y: 496, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 699, y: 496 + 99 + 5, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 20, y: 20, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 733, y: 560 + 30, width: 40, height: 10, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 760, y: 1, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false },
             
-            { id: "bordaDireita", x: 0, y: 600, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaEsquerda", x: 0, y: 0, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaInferior", x: 800, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaSuperior", x: 0, y: 0, width: 1, height: 600, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "chao1", x: 1, y: 101, width: 399, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "chao2", x: 1, y: 201, width: 503, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "chao3", x: 504, y: 101, width: 296, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "chao4", x: 699, y: 496, width: 101, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "parede1", x: 499, y: 1, width: 5, height: 105, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "parede2", x: 499, y: 201, width: 5, height: 399, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "parede3", x: 599, y: 101, width: 5, height: 400, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "parede4", x: 699, y: 201, width: 5, height: 300, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "a", x: 1, y: 1, width: 1, height: 1, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "mouseTravessa1", x: 499, y: 106, width: 5, height: 95, cor: "#ff9100", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "cuboTravessa1", x: 400, y: 101, width: 99, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "cuboTravessa2", x: 699, y: 501, width: 5, height: 99, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "bordaTravessa1", x: 395, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaTravessa2", x: 499, y: 101, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaTravessa3", x: 499, y: 201, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaTravessa5", x: 699, y: 496, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaTravessa6", x: 699, y: 496+99+5, width: 5, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-
-            { id: "botaoIrado", x: 20, y: 20, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: true },
-            { id: "botaoIradoPlayer", x: 733, y: 560+30, width: 40, height: 10, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false },
-            { id: "testWinSquare", x: 760, y: 1, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true },
+            { exclusionId: null, x: 100, y: 50, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: true },
+            { exclusionId: null, x: 100, y: 150, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: true },
         ]
     },
     {
@@ -97,22 +103,22 @@ var gameMaps = [
         <p style="font-family: 'Times New Roman', Times, serif;">Parágrafo de teste!</p>
         `,
         dados: [
-            { id: "background", x: 0, y: 0, width: 800, height: 800, cor: "#000000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            
-            { id: "bordaDireita", x: 0, y: 800, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaEsquerda", x: 0, y: 0, width: 800, height: 1, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaInferior", x: 800, y: 0, width: 1, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
-            { id: "bordaSuperior", x: 0, y: 0, width: 1, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false },
+            { exclusionId: null, x: 0, y: 0, width: 800, height: 800, cor: "#000000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
 
-            { id: "botaoIrado", x: 180, y: 100, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: true, botRepeatable: true },
-            { id: "botaoIradoQueAbreAPorta", x: 380, y: 200, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: false }
+            { exclusionId: null, x: 0, y: 800, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 0, y: 0, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 800, y: 0, width: 2, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 0, y: 0, width: 2, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false },
+
+            { exclusionId: null, x: 180, y: 100, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: true, botRepeatable: true, botAcao: null, botPressurePlate: false },
+            { exclusionId: null, x: 380, y: 200, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "cuboTravessa1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false }
         ]
     },
     {
         nome: "The end of the rainbow.",
         descricao: ``,
         dados: [
-            { id: "background", x: 0, y: 0, width: 1920, height: 1080, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false }
+            { exclusionId: null, x: 0, y: 0, width: 1920, height: 1080, cor: "#FFFFFF", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false }
         ]
     }
 ];
@@ -174,6 +180,7 @@ function logicaBase() {
         desenharMapa();
         movimentoBase();
         mouseBolinha();
+        detectarPressurePlate();
     } else {
         endGame();
     }
@@ -211,6 +218,64 @@ function trocarMapa(mapaAlvo) {
     atualizarNomeMapa();
 }
 
+function changeStatePressurePlate(botao, varAtivo) {
+    for (let bloco of gameMaps[botao.mapaAlvo].dados) {
+        if (bloco.exclusionId && bloco.exclusionId === botao.targetId) {
+            if (botao.botAcao === "ativa") bloco.objAtivo = varAtivo;
+            else if (botao.botAcao === "desativa") bloco.objAtivo = !varAtivo;
+        }
+    }
+    // exata mesma merda do ativar botao btw unica coisa que muda é que depende do valor de varAtivo pq ele é oq o detectarPressurePlate manda pra ver se ta pisando ou nao
+}
+
+function detectarPressurePlate() {
+    for (let bloco of activeGameMap) {
+        if (!bloco.botPressurePlate || !bloco.objAtivo) continue;
+
+        let varAtivo = false;
+
+        if (bloco.playerClickable) {
+            if (
+                colisaoAABB(
+                    posXQuadrado1, posYQuadrado1, tam, tam,
+                    bloco.x, bloco.y, bloco.width, bloco.height,
+                    true
+                )
+            ) {
+                varAtivo = true;
+            }
+        }
+        // verifica se o player tá encima, se tiver, ptchuuum tá tryue
+
+        if (bloco.clickableMouse) {
+            if (
+                mouseClick &&
+                colisaoAABB(
+                    x - 10, y - 10, 20, 20,
+                    bloco.x, bloco.y, bloco.width, bloco.height,
+                    true
+                )
+            ) {
+                varAtivo = true;
+            }
+        }
+        // mesma coisa mas agora é o mouse clicano zé
+
+        if (varAtivo !== bloco.botApertado) {
+            bloco.botApertado = varAtivo;
+
+            changeStatePressurePlate(bloco, varAtivo);
+
+            if (varAtivo) {
+                bloco.cor = "#5f5f5f";
+            } else {
+                bloco.cor = "#ff0000";
+            }
+        }
+        // corzinha pra ficar bonito quando tá ativado e/ou desligado
+    }
+}
+
 function ativarBotao(botao) {
     if (botao.botApertado) return;
     if (!botao.botRepeatable) {
@@ -219,12 +284,15 @@ function ativarBotao(botao) {
     }
     // faz o botao fica cinza depois de apertar (se for um botao maligno que só aperta uma vez e para de funcionar)
 
-    if (botao.targetId !== null) {
+    if (botao.targetId) {
         for (let bloco of gameMaps[botao.mapaAlvo].dados) {
-            if (bloco.id === botao.targetId) {
-                bloco.objAtivo = false;
+            if (bloco.exclusionId && bloco.exclusionId === botao.targetId) {
+                if (botao.botAcao === "ativa") bloco.objAtivo = true;
+                else if (botao.botAcao === "desativa") bloco.objAtivo = false;
+                else if (botao.botAcao === "toggle") bloco.objAtivo = !bloco.objAtivo;
                 // procura todos os blcoos dentro da colisao ate achar o que tem o id alvo e marca ele como desativado
                 // usa isso pra abrir porta !
+                // edit: agora usa o valor de botAcao pra poder ter alg7uns botoes que fazem cosia aparecer ao inves de só sumir
             }
         }
     }
@@ -283,7 +351,7 @@ function mouseBolinha() {
     y = nextY;
 
     for (let bloco of activeGameMap) {
-        if (!bloco.clickableMouse || !bloco.objAtivo) continue;
+        if (!bloco.clickableMouse || !bloco.objAtivo || bloco.botPressurePlate) continue;
 
         if (
             mouseClick &&
@@ -365,7 +433,7 @@ function movimentoBase() {
     posYQuadrado1 = nextY;
 
     for (let bloco of activeGameMap) {
-        if (!bloco.playerClickable || !bloco.objAtivo) continue;
+        if (!bloco.playerClickable || !bloco.objAtivo || bloco.botPressurePlate) continue;
 
         if (
             colisaoAABB(
