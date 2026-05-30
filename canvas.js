@@ -94,8 +94,8 @@ var gameMaps = [
             
             { objId: "testWinSquare", exclusionId: null, x: 760, y: 1, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false },
 
-            { objId: "testPressurePlayer", exclusionId: null, x: 100, y: 50, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "desativa", botPressurePlate: false },
-            { objId: "testPressureMouse", exclusionId: null, x: 100, y: 150, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "msBut1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "desativa", botPressurePlate: false },
+            { objId: "testPressurePlayer", exclusionId: null, x: 100, y: 50, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBot1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "desativa", botPressurePlate: false },
+            { objId: "testPressureMouse", exclusionId: null, x: 100, y: 150, width: 40, height: 40, cor: "#ff0000", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "msBot1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "desativa", botPressurePlate: false },
         ]
     },
     {
