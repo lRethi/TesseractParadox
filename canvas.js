@@ -299,6 +299,7 @@ function ativarBotao(botao) {
     }
     if (botao.trocaMapa) trocarMapa(botao.mapaAlvo);
     // inicia fraud (ts is crazy dude)
+    // [LMAOOOO]
 }
 
 function mouseBolinha() {
