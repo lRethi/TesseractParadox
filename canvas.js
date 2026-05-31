@@ -254,7 +254,7 @@ document.addEventListener("mouseup", (event) => {
     mouseClick = false;
 })
 
-var currentMap = 3;
+var currentMap = 0;
 activeGameMap = gameMaps[currentMap].dados;
 atualizarNomeMapa();
 logicaBase();
@@ -278,6 +278,17 @@ function logicaBase() {
 }
 
 function atualizarNomeMapa() {
+    if (currentMap !== 3) {
+        document.getElementById("gameTitle").innerHTML = `<p style="font-family: 'Fira Code', monospace;
+    color: #1eff00;
+    background-color: #000000;
+    padding: 10px;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    text-align: center;">tesseract paradox: thinking with dimensions...</p>`
+    } else {
+        document.getElementById("gameTitle").innerHTML = ""
+    }
     document.getElementById("mapName").innerHTML = gameMaps[currentMap].nome;
     document.getElementById("mapDescription").innerHTML = gameMaps[currentMap].descricao;
 }
