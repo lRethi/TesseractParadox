@@ -13,8 +13,8 @@ canvas.height = 1080;
 
 var c = canvas.getContext('2d');
 
-var posXQuadrado1 = 50;
-var posYQuadrado1 = 50;
+var posXQuadrado1 = 2;
+var posYQuadrado1 = 800;
 var tam = 50;
 
 var teclas = {};
@@ -29,6 +29,11 @@ var mouseX = 0;
 var mouseY = 0;
 var mouseClick = false;
 var victoryMapId = 4;
+var corPortal1 = "#5c1209"
+var corPortal2 = "#d40000";
+var corPortal3 = "#b12222";
+var corPlat1 = "#ea00ff"
+var corPlat3 = "#0a0a0a";
 var x = 250, y = 150; // pos inicial do mouse
 // variaveis muito legais acima ! haha !
 
@@ -63,7 +68,7 @@ var gameMaps = [
             { objId: "flr3", exclusionId: null, x: 504, y: 101, width: 296, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "flr4", exclusionId: null, x: 699, y: 496, width: 101, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
-             { objId: "fakeFlrTop2", exclusionId: null, x: 2, y: 340, width: 103, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "fakeFlrTop2", exclusionId: null, x: 2, y: 340, width: 190, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 200, y: 450, width: 5, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 150, y: 570, width: 5, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 235, y: 540, width: 5, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -72,7 +77,7 @@ var gameMaps = [
             { objId: "a", exclusionId: null, x: 300 + 64, y: 500 - 100, width: 5, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 380, y: 300, width: 120, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 300, y: 270, width: 5, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "fakeFlrTop2", exclusionId: null, x: 2, y: 340, width: 103, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "fakeFlrTop2", exclusionId: null, x: 2, y: 340, width: 103, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 2, y: 2, width: 0, height: 0, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "wall1", exclusionId: null, x: 499, y: 2, width: 5, height: 104, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -96,7 +101,7 @@ var gameMaps = [
             { objId: "botaoM2", exclusionId: null, x: 30, y: 34, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "msBut2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "botaoC1", exclusionId: null, x: 750, y: 590, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null },
-            { objId: "botaoC1", exclusionId: null, x: 440, y: 290, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 4, trocaMapa: true, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "botaoC2", exclusionId: null, x: 440, y: 290, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 3, trocaMapa: true, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "testWinSquare", exclusionId: null, x: 760, y: 2, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 4, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false, botPermaColor: null },
         ]
@@ -125,6 +130,8 @@ var gameMaps = [
             { objId: "mTravessa1", exclusionId: "switcharoo", x: 600, y: 90, width: 200, height: 5, cor: "#ff9100", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "mTravessa1_Alt", exclusionId: "switcharoo", x: 600, y: 90, width: 200, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
+            { objId: "cTravessa", exclusionId: "trickyButton", x: 2, y: 90, width: 98, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            
             { objId: "fakeFlr1", exclusionId: "trickyButton", x: 2, y: 700, width: 697, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "fakeFlr2", exclusionId: "trickyButton", x: 694, y: 519, width: 106, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "fakeFlrTop1", exclusionId: "trickyButton", x: 100, y: 90, width: 5, height: 250, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -134,7 +141,7 @@ var gameMaps = [
             { objId: "fakeWallTop2", exclusionId: "trickyButton", x: 600, y: 2, width: 5, height: 60, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "flrTop1", exclusionId: "trickyButton", x: 2, y: 90, width: 600, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "flrTop2", exclusionId: "trickyButton", x: 400, y: 0, width: 5, height: 90, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "wall>:[", exclusionId: "trickyButton", x: 400, y: 2, width: 5, height: 90 - 2, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             
             { objId: "flr1", exclusionId: "trickyButton", x: 2, y: 700, width: 697, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "flr2", exclusionId: "trickyButton", x: 694, y: 524, width: 106, height: 5, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -152,14 +159,15 @@ var gameMaps = [
             { objId: "removableWall2", exclusionId: "trickyButton", x: 250, y: 524, width: 5, height: 176, cor: "#000000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "removableWall3", exclusionId: "trickyButton", x: 2, y: 524, width: 248, height: 5, cor: "#000000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
-            { objId: "entretainment", exclusionId: "trickyButton", x: 2, y: 170, width: 799, height: 354, cor: "#797272", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: false, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: true, botAcao: "toggle", botPressurePlate: false, botPermaColor: "#fafafa" },
-            { objId: "realityStep", exclusionId: "trickyButton", x: 600, y: 165, width: 200, height: 5, cor: "#ffffff", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
+            { objId: "entretainment", exclusionId: "switcharoo", x: 2, y: 524 - 10, width: 248, height: 10, cor: corPortal1, colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: false, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: true, botAcao: "toggle", botPressurePlate: false, botPermaColor: "#fafafa" },
+            { objId: "realityStep", exclusionId: "trickyButton", x: 600, y: 165, width: 200, height: 5, cor: corPlat1, colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
+            { objId: "realityWall", exclusionId: "trickyButton", x: 600, y: 90 + 5, width: 5, height: 70, cor: corPlat1, colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
 
             { objId: "botaoM1", exclusionId: null, x: 700, y: 27, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "trickyButton", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null },
 
             { objId: "botaoC1", exclusionId: "trickyButton", x: 2, y: 705, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
-            { objId: "botaoC2", exclusionId: null, x: 40, y: 328, width: 10, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
-            { objId: "botaoC3", exclusionId: "trickyButton", x: 40, y: 45, width: 15, height: 15, cor: "#f800cf", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "trickyButton", botApertado: false, objAtivo: false, playerClickable: true, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null },
+            { objId: "botaoC2", exclusionId: "trickyButton", x: 30, y: 330, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
+            { objId: "botaoC3", exclusionId: "switcharoo", x: 40, y: 45, width: 15, height: 15, cor: corPortal1, colPlayer: false, colMouse: false, clickableMouse: false, targetId: "trickyButton", botApertado: false, objAtivo: false, playerClickable: true, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null },
 
         ]
     },
@@ -171,16 +179,12 @@ var gameMaps = [
 
             { objId: "flr1", exclusionId: null, x: 0, y: 800, width: 200, height: 5, cor: "#ad081e", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "flr2", exclusionId: null, x: 0, y: 700, width: 200, height: 5, cor: "#ad081e", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "flr3", exclusionId: null, x: 0, y: 574, width: 200, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-
+            
             { objId: "wall1", exclusionId: null, x: 0, y: 700, width: 2, height: 105, cor: "#ad081e", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "wall2", exclusionId: null, x: 200, y: 700, width: 5, height: 105, cor: "#ad081e", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
-            { objId: "flr1", exclusionId: null, x: 0, y: 80, width: 1024, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-
             { objId: "step1", exclusionId: null, x: 650, y: 150, width: 100, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "step2", exclusionId: "switchState2", x: 260, y: 720, width: 100, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "stepButton", exclusionId: "switchState2", x: 293, y: 710, width: 40, height: 10, cor: "#ff9100", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "failSafeButton", botApertado: null, objAtivo: false, playerClickable: true, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
             { objId: "step3", exclusionId: "switchState2", x: 480, y: 660, width: 75, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "step4", exclusionId: "switchState", x: 320, y: 610, width: 100, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "step5", exclusionId: "switchState2", x: 780, y: 560, width: 80, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -195,12 +199,10 @@ var gameMaps = [
             { objId: "step14", exclusionId: "switchState2", x: 135, y: 180, width: 50, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "step15", exclusionId: "switchState", x: 820, y: 230, width: 80, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             
-            { objId: "failSafeStep", exclusionId: "failSafeButton", x: 0, y: 795, width: 1024, height: 5, cor: "#ff00d44b", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-
-            { objId: "botaoM1", exclusionId: null, x: 500, y: 40, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
+            { objId: "botaoM1", exclusionId: null, x: 500, y: 30, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
             { objId: "botaoM_Hold", exclusionId: null, x: 324, y: 640, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
-            { objId: "botaoM2_Hold", exclusionId: null, x: 424, y: 640, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
-            { objId: "botaoC1", exclusionId: null, x: 700, y: 110, width: 40, height: 40, cor: "#cf00f8", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
+            { objId: "botaoM2_Hold", exclusionId: null, x: 724, y: 640, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
+            { objId: "botaoC1", exclusionId: null, x: 700, y: 110 + 30, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
         ]
     },
     {
@@ -286,7 +288,7 @@ document.addEventListener("mouseup", (event) => {
     mouseClick = false;
 })
 
-var currentMap = 0;
+var currentMap = 1;
 activeGameMap = gameMaps[currentMap].dados;
 atualizarNomeMapa();
 logicaBase();
@@ -329,9 +331,16 @@ function desenharMapa() {
     for (let bloco of activeGameMap) {
         if (!bloco.objAtivo) continue;
         // skipa qualquer bloco que nao ta ativo na hora de desenhar
+        if(bloco.cor == corPortal1) bloco.cor = corPortal2;
+        else if(bloco.cor == corPortal2) bloco.cor = corPortal3;
+        else if(bloco.cor == corPortal3) bloco.cor = corPortal1;
+
+        if(bloco.cor == corPlat1) bloco.cor = corPlat3;
+        else if(bloco.cor == corPlat3) bloco.cor = corPlat1;
 
         c.fillStyle = bloco.cor;
         c.fillRect(bloco.x, bloco.y, bloco.width, bloco.height);
+
         // pinta as coisa no mapa
     }
 }
