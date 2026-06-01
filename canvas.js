@@ -76,7 +76,6 @@ var gameMaps = [
 =======
             { objId: "fakeFlrTop2", exclusionId: null, x: 2, y: 340, width: 103, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "a", exclusionId: null, x: 2, y: 2, width: 0, height: 0, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
->>>>>>> Stashed changes
 
             { objId: "wall1", exclusionId: null, x: 499, y: 2, width: 5, height: 104, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "wall2", exclusionId: null, x: 499, y: 201, width: 5, height: 399, cor: "#00b80f", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
