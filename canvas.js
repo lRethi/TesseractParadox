@@ -28,7 +28,7 @@ var onGround = false;
 var mouseX = 0;
 var mouseY = 0;
 var mouseClick = false;
-var victoryMapId = 3;
+var victoryMapId = 4;
 var x = 250, y = 150; // pos inicial do mouse
 // variaveis muito legais acima ! haha !
 
@@ -89,7 +89,7 @@ var gameMaps = [
 
             { objId: "botaoC1", exclusionId: null, x: 750, y: 590, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null },
 
-            { objId: "testWinSquare", exclusionId: null, x: 760, y: 2, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 2, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "testWinSquare", exclusionId: null, x: 760, y: 2, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 4, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false, botPermaColor: null },
         ]
     },
     {
@@ -108,10 +108,10 @@ var gameMaps = [
             { objId: "bordaInferior1", exclusionId: null, x: 800, y: 0, width: 2, height: 800, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "bordaSuperior1", exclusionId: null, x: 0, y: 0, width: 2, height: 800, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
-            { objId: "bordaDireita2", exclusionId: "trickyButton", x: 0, y: 800, width: 800, height: 2, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "bordaEsquerda2", exclusionId: "trickyButton", x: 0, y: 0, width: 800, height: 2, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "bordaInferior2", exclusionId: "trickyButton", x: 800, y: 0, width: 2, height: 800, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
-            { objId: "bordaSuperior2", exclusionId: "trickyButton", x: 0, y: 0, width: 2, height: 800, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "bordaDireita2", exclusionId: "trickyButton", x: 0, y: 800, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "bordaEsquerda2", exclusionId: "trickyButton", x: 0, y: 0, width: 800, height: 2, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "bordaInferior2", exclusionId: "trickyButton", x: 800, y: 0, width: 2, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "bordaSuperior2", exclusionId: "trickyButton", x: 0, y: 0, width: 2, height: 800, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "mTravessa1", exclusionId: "switcharoo", x: 600, y: 90, width: 200, height: 5, cor: "#ff9100", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
             { objId: "mTravessa1_Alt", exclusionId: "switcharoo", x: 600, y: 90, width: 200, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
@@ -188,8 +188,8 @@ var gameMaps = [
             { objId: "failSafeStep", exclusionId: "failSafeButton", x: 0, y: 795, width: 1024, height: 5, cor: "#ff00d44b", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
 
             { objId: "botaoM1", exclusionId: null, x: 500, y: 40, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
-            { objId: "botaoM_Hold", exclusionId: null, x: 124, y: 600, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
-            { objId: "botaoM2_Hold", exclusionId: null, x: 24, y: 600, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
+            { objId: "botaoM_Hold", exclusionId: null, x: 324, y: 600, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
+            { objId: "botaoM2_Hold", exclusionId: null, x: 424, y: 600, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#003cff" },
             { objId: "botaoC1", exclusionId: null, x: 700, y: 110, width: 40, height: 40, cor: "#cf00f8", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: "ativa", botPressurePlate: false, botPermaColor: null },
         ]
     },
@@ -197,7 +197,12 @@ var gameMaps = [
         nome: "<b><i>where am i</i></b>",
         descricao: `<i>where am i<p>where am i</p></i> <br></br> ...`,
         dados: [
-
+            { objId: "flr1", exclusionId: null, x: 1, y: 328, width: 300, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "step1", exclusionId: null, x: 321, y: 288, width: 40, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "step2", exclusionId: null, x: 381, y: 248, width: 40, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "step3", exclusionId: null, x: 441, y: 208, width: 40, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "step4", exclusionId: null, x: 501, y: 168, width: 40, height: 5, cor: "#000000", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null },
+            { objId: "testTpSquare", exclusionId: null, x: 650, y: 28, width: 40, height: 40, cor: "#1eff00", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: true, botRepeatable: false, winSquare: true, botAcao: null, botPressurePlate: false, botPermaColor: null },
         ]
     },
     {
@@ -246,6 +251,9 @@ canvas.addEventListener("mousemove", function (event) {
 document.addEventListener("keydown", (event) => {
     // mecanica de pulo!
     if ((event.key === "ArrowUp" && onGround) || (event.key === "w" && onGround) || (event.key === " " && onGround)) {
+        if(currentMap == 3){
+        velMovimentoY = 10;
+    }
         velGravidadeY = -velMovimentoY;
         onGround = false;
         // dentro daqui pra nao ficar batendo atoa no keyup, pq ele tava deixando o movimento incompleto por causa disso
@@ -268,7 +276,7 @@ document.addEventListener("mouseup", (event) => {
     mouseClick = false;
 })
 
-var currentMap = 1;
+var currentMap = 0;
 activeGameMap = gameMaps[currentMap].dados;
 atualizarNomeMapa();
 logicaBase();
@@ -292,7 +300,7 @@ function logicaBase() {
 }
 
 function atualizarNomeMapa() {
-    if (currentMap !== 3) {
+    if (currentMap !== 4 && currentMap !== 3) {
         document.getElementById("gameTitle").innerHTML = `<p style="font-family: 'Fira Code', monospace;
     color: #1eff00;
     background-color: #000000;
