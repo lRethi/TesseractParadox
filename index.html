@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesseract Paradox: Thinking with Dimensions</title>
     <style type="text/css">
+        .parent {
+            display: flex;
+        }
+
+        .child {
+            margin-right: 20px;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1 id ="gameTitle"></h1>
+    <h1 id="gameTitle"></h1>
     <h2 id="mapName" style="font-family: 'Fira Code', monospace;"></h2>
-    <div id="mapDescription" style="font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.0;">
-    </div>
-    <canvas></canvas>
-    <script src="canvas.js"></script>
+    <div class='parent'>
+        <canvas class='child float-left-child'></canvas>
+        <div class='child float-left-child' id="mapDescription"
+            style="font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.0;">
+        </div>
+        <script src="canvas.js"></script>
 </body>
 
 </html>
