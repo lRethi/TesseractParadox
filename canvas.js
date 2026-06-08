@@ -29,6 +29,7 @@ var mouseX = 0;
 var mouseY = 0;
 var mouseClick = false;
 var victoryMapId = 4;
+
 // The WORST sistem for changing colors BUT as a wise man once said
 // "If its stupid, and it works, it wasnt  stupid to begin with." - Sun Tzu
 var corPortal1 = "#5c1209";
@@ -41,7 +42,7 @@ var corPlat3 = "#0a0a0a";
 var varMouseWin = false;
 var varCuboWin = false;
 
-var x = 300, y = 10; // pos inicial do mouse
+var x = 279, y = 190; // pos inicial do mouse
 // variaveis muito legais acima ! haha !
 
 // jeito muito estupido de desenhar o mapa e as colisoes™
@@ -109,7 +110,7 @@ var gameMaps = [
             { objId: "botaoM1", exclusionId: null, x: 733, y: 436, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "msBut1", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: true, botRepeatable: false, botAcao: "desativa", botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
             { objId: "botaoM2", exclusionId: null, x: 30, y: 34, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "msBut2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
             { objId: "botaoM3_hold", exclusionId: null, x: 440, y: 230, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: ":D", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: true, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
-            { objId: "botaoM3_hold_binito", exclusionId: null, x: 440+10, y: 230+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: null, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 0, trocaMapa: false, botRepeatable: null, botAcao: null, botPressurePlate: null, botPermaColor: null, colorArray: [], colorIndex: 0 },
+            { objId: "botaoM3_hold_binito", exclusionId: null, x: 440+10, y: 230+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: null, botPermaColor: "#1100ff", colorArray: [], colorIndex: 0 },
 
             { objId: "botaoC1", exclusionId: null, x: 750, y: 590, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 0, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
             { objId: "botaoC2", exclusionId: null, x: 440, y: 290, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "cbBut1", botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 3, trocaMapa: true, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
@@ -167,10 +168,10 @@ var gameMaps = [
             { objId: "mTravessa", exclusionId: "switcharoo", x: 2, y: 524, width: 248, height: 5, cor: "#ff9100", colPlayer: true, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
             { objId: "mTravessa_Alt", exclusionId: "switcharoo", x: 0, y: 524, width: 250, height: 5, cor: "#b80099", colPlayer: false, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
 
-            { objId: "botaoM2_Hold", exclusionId: "trickyButton", x: 500, y: 600, width: 40, height: 40, cor: "#003cff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
-            { objId: "botaoM2_Hold_binito", exclusionId: "trickyButton", x: 500+10, y: 600+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#1100ff", colorArray: [], colorIndex: 0 },
+            { objId: "botaoM2_Hold", exclusionId: "trickyButton", x: 500, y: 600, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
+            { objId: "botaoM2_Hold_binito", exclusionId: "trickyButton", x: 500+10, y: 600+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: null, botPermaColor: "#1100ff", colorArray: [], colorIndex: 0 },
             { objId: "botaoC2_Hold", exclusionId: "trickyButton", x: 25, y: 680, width: 40, height: 20, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: true, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#f4f800", colorArray: [], colorIndex: 0 },
-            { objId: "botaoC2_Hold_binito", exclusionId: "trickyButton", x: 25+10, y: 680+10, width: 20, height: 20 - 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: true, botPermaColor: "#8df800", colorArray: [], colorIndex: 0 },
+            { objId: "botaoC2_Hold_binito", exclusionId: "trickyButton", x: 25+10, y: 680+10, width: 20, height: 20 - 10, cor: "#8df800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: false, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: null, botPermaColor: "#8df800", colorArray: [], colorIndex: 0 },
 
             { objId: "removableWall1", exclusionId: "trickyButton", x: 694, y: 524, width: 5, height: 180, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
             { objId: "removableWall2", exclusionId: "trickyButton", x: 250, y: 524, width: 5, height: 176, cor: "#000000", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
@@ -221,10 +222,10 @@ var gameMaps = [
             { objId: "step15", exclusionId: "switchState", x: 820, y: 230, width: 80, height: 5, cor: "#ffffff", colPlayer: true, colMouse: true, clickableMouse: false, targetId: null, botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: null, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
 
             { objId: "botaoM1", exclusionId: null, x: 500, y: 30, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: null, botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: true, botRepeatable: false, botAcao: "ativa", botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
-            { objId: "botaoM_Hold", exclusionId: null, x: 324, y: 640, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
-            { objId: "botaoM_Hold_binito", exclusionId: null, x: 324+10, y: 640+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: null, botAcao: null, botPressurePlate: null, botPermaColor: "#003cff", colorArray: [], colorIndex: 0 },
+            { objId: "botaoM1_Hold", exclusionId: null, x: 324, y: 640, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
+            { objId: "botaoM1_Hold_binito", exclusionId: null, x: 324+10, y: 640+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: null, botPermaColor: "#1100ff", colorArray: [], colorIndex: 0 },
             { objId: "botaoM2_Hold", exclusionId: null, x: 724, y: 640, width: 40, height: 40, cor: "#00c3ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: false, botAcao: "toggle", botPressurePlate: true, botPermaColor: "#00c3ff", colorArray: [], colorIndex: 0 },
-            { objId: "botaoM2_Hold_binito", exclusionId: null, x: 724+10, y: 640+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: true, targetId: "switchState2", botApertado: false, objAtivo: true, playerClickable: false, mapaAlvo: 2, trocaMapa: false, botRepeatable: null, botAcao: null, botPressurePlate: null, botPermaColor: "#003cff", colorArray: [], colorIndex: 0 },
+            { objId: "botaoM2_Hold_binito", exclusionId: null, x: 724+10, y: 640+10, width: 20, height: 20, cor: "#1100ff", colPlayer: false, colMouse: false, clickableMouse: false, targetId: "switcharoo", botApertado: null, objAtivo: true, playerClickable: false, mapaAlvo: 1, trocaMapa: false, botRepeatable: false, botAcao: null, botPressurePlate: null, botPermaColor: "#1100ff", colorArray: [], colorIndex: 0 },
             { objId: "botaoC1", exclusionId: null, x: 700, y: 110 + 30, width: 40, height: 10, cor: "#f4f800", colPlayer: false, colMouse: false, clickableMouse: false, targetId: null, botApertado: false, objAtivo: true, playerClickable: true, mapaAlvo: 1, trocaMapa: true, botRepeatable: true, botAcao: "ativa", botPressurePlate: false, botPermaColor: null, colorArray: [], colorIndex: 0 },
         ]
     },
@@ -447,7 +448,7 @@ function detectarPressurePlate() {
         }
         // verifica se o player tá encima, se tiver, ptchuuum tá tryue
         if (
-            mouseClick &&
+            bloco.clickableMouse && mouseClick &&
             colisaoAABB(
                 x - 10, y - 10, 20, 20,
                 bloco.x, bloco.y, bloco.width, bloco.height,
